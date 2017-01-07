@@ -17,7 +17,7 @@ My configuration files for [Vim](https://www.vim.org/)
     $ cd /path/to/a/storage/directory/of/your/choice
     $ git clone https://github.com/pettarin/vim-config --recursive
     $ mv ~/.vim ~/.vim.backup
-    $ mv ~/.vimrc ~/.vimrc
+    $ mv ~/.vimrc ~/.vimrc.backup
     $ ln -s vim-config/vimrc ~/.vimrc
     $ ln -s vim-config/vim ~/.vim
     ```
