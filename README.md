@@ -2,8 +2,7 @@
 
 My configuration files for [Vim](https://www.vim.org/)
 
-* Version: 1.0.0
-* Date: 2017-01-07
+* Date: 2017-01-08
 * Developer: [Alberto Pettarin](http://www.albertopettarin.it/)
 * License: the MIT License (MIT)
 * Contact: [click here](http://www.albertopettarin.it/contact.html)

@@ -5,8 +5,7 @@
 " alberto@albertopettarin.it
 "
 " MIT license
-" 2017-01-07
-" v1.0.0
+" 2017-01-08
 "
 
 " Initialization {{{
