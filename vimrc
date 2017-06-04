@@ -7,6 +7,62 @@
 " MIT license
 " 2017-01-08
 "
+" Vundle {{{
+
+    set nocompatible              " be iMproved, required
+    filetype off                  " required
+
+    " set the runtime path to include Vundle and initialize
+    set rtp+=~/.vim/bundle/Vundle.vim
+    call vundle#begin()
+    " alternatively, pass a path where Vundle should install plugins
+    "call vundle#begin('~/some/path/here')
+
+    " let Vundle manage Vundle, required
+    Plugin 'VundleVim/Vundle.vim'
+
+    " The following are examples of different formats supported.
+    " Keep Plugin commands between vundle#begin/end.
+    " plugin on GitHub repo
+    " Plugin 'tpope/vim-fugitive'
+    " plugin from http://vim-scripts.org/vim/scripts.html
+    " Plugin 'L9'
+    " Git plugin not hosted on GitHub
+    " Plugin 'git://git.wincent.com/command-t.git'
+    " git repos on your local machine (i.e. when working on your own plugin)
+    " Plugin 'file:///home/gmarik/path/to/plugin'
+    " The sparkup vim script is in a subdirectory of this repo called vim.
+    " Pass the path to set the runtimepath properly.
+    " Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+    " Install L9 and avoid a Naming conflict if you've already installed a
+    " different version somewhere else.
+    " Plugin 'ascenator/L9', {'name': 'newL9'}
+
+    " my plugins
+    " Plugin 'Valloric/YouCompleteMe'
+    " Plugin 'python-mode/python-mode'
+    Plugin 'ervandew/supertab'
+    Plugin 'w0rp/ale'
+    Plugin 'davidhalter/jedi-vim'
+    Plugin 'vim-airline/vim-airline'
+    Plugin 'vim-airline/vim-airline-themes'
+
+    " All of your Plugins must be added before the following line
+    call vundle#end()            " required
+    filetype plugin indent on    " required
+    " To ignore plugin indent changes, instead use:
+    "filetype plugin on
+    "
+    " Brief help
+    " :PluginList       - lists configured plugins
+    " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+    " :PluginSearch foo - searches for foo; append `!` to refresh local cache
+    " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+    "
+    " see :h vundle for more details or wiki for FAQ
+    " Put your non-Plugin stuff after this line
+
+" }}}
 
 " Initialization {{{
     " Use Vim settings, rather than Vi
@@ -30,13 +86,14 @@
 " Visual and GUI {{{
     set title                       " Set the terminal's title
     set mouse=a                     " Enable mouse usage (all modes) in terminals
+    "set paste                       " Avoid issues when pasting in terminal
     "set visualbell                  " No beeping.
     set lazyredraw                  " Redraw only when we need to
     set wrap                        " Turn on line wrapping
     set ruler                       " Show cursor position
     set number                      " Show line numbers
     "set cursorline                  " Highlight current line
-    "set laststatus=2                " Always show a status line
+    set laststatus=2                " Always show a status line
     set scrolloff=3                 " Show 3 lines of context around the cursor
     set display+=lastline           " Display as much as possibe of a window's last line
     set showcmd                     " Show (partial) command in status line.
@@ -112,6 +169,10 @@
     " map jk combination to ESC in insert mode
     inoremap jk <esc>
 
+    " prev/next remap
+    noremap b :previous<return>
+    noremap m :next<return>
+
     " turns off search highlighting
     nnoremap <Leader><space> :noh<CR>
     nnoremap <Leader>. :noh<CR>
@@ -144,6 +205,51 @@
     "    cnoreabbrev Ag Ack
     "    cnoreabbrev AG Ack
     "endif
+
+    " ALE
+    " select linters
+    " let g:ale_linters = { 'javascript': ['eslint'], }
+    " move between errors/warnings
+    nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+    nmap <silent> <C-j> <Plug>(ale_next_wrap)
+    " keep the sign gutter open
+    let g:ale_sign_column_always = 1
+    " check only on save, not on edit or open
+    let g:ale_lint_on_save = 1
+    let g:ale_lint_on_text_changed = 0
+    let g:ale_lint_on_enter = 0
+
+    " jedi-vim
+    " make jedi-vim use tabs when going to a definition
+    let g:jedi#use_tabs_not_buffers = 1
+
+    " do not start completion after a dot
+    " let g:jedi#popup_on_dot = 0
+
+    " select first line of completion menu
+    " let g:jedi#popup_select_first = 0
+
+    " misc
+    "let g:jedi#goto_command = "<leader>d"
+    "let g:jedi#goto_assignments_command = "<leader>g"
+    "let g:jedi#goto_definitions_command = ""
+    "let g:jedi#documentation_command = "K"
+    "let g:jedi#usages_command = "<leader>n"
+    "let g:jedi#completions_command = "<C-Space>"
+    "let g:jedi#rename_command = "<leader>r"
+
+    " do not show docstring to popup
+    autocmd FileType python setlocal completeopt-=preview
+
+    " disable completion
+    " let g:jedi#completions_enabled = 0
+
+    " vim-airline
+    let g:airline_theme = 'luna'
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#tabline#left_sep = ' '
+    let g:airline#extensions#tabline#left_alt_sep = '|'
+
 " }}}
 
 " Autogroups {{{
